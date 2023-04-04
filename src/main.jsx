@@ -5,9 +5,9 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./Components/Home";
 import Meals from "./Components/Meals";
-import About from "./About";
-import Contact from "./Contact";
-import MealDetail from "./MealDetail";
+import About from "./Components/About";
+import Contact from "./Components/Contact";
+import MealDetail from "./Components/MealDetail";
 const router = createBrowserRouter([
   {
     path: "/",
