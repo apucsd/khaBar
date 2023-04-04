@@ -2,7 +2,7 @@ import React from "react";
 
 const Contact = () => {
   return (
-    <div className="flex items-center">
+    <div className="flex lg:flex md:flex-row my-8  flex-col-reverse items-center">
       <div className="w-full my-4 p-4 text-center">
         <input
           type="text"
@@ -24,7 +24,7 @@ const Contact = () => {
       </div>
       <div className="">
         <img
-          className="w-100"
+          className="md:w-full w-1/2 mx-auto"
           src="https://i.ibb.co/M1YLj7g/login.png"
           alt=""
         />
