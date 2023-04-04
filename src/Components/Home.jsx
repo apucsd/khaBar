@@ -18,7 +18,7 @@ const Home = () => {
         </p>
       </div>
       <div className="border ">
-        <Lottie style={{ height: "450px" }} animationData={food} />
+        <Lottie style={{ height: "" }} animationData={food} />
       </div>
     </div>
   );
