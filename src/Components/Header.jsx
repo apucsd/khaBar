@@ -16,12 +16,47 @@ const Header = () => {
       </Link>
       <div onClick={() => setIsOpen(!isOpen)} className="md:hidden">
         {isOpen ? (
-          <Bars3Icon className="h-8 w-8 text-blue-500" />
-        ) : (
           <XCircleIcon className="h-8 w-8 text-blue-500" />
+        ) : (
+          <Bars3Icon className="h-8 w-8 text-blue-500" />
         )}
       </div>
       {isOpen ? (
+        <div className=" absolute md:hidden top-16 duration-1000  right-4  gap-4 text-blue-500">
+          <div className="">
+            <NavLink
+              to="/"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              Home
+            </NavLink>
+          </div>
+          <div>
+            <NavLink
+              to="/meals"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              Meals
+            </NavLink>
+          </div>
+          <div>
+            <NavLink
+              to="/about"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              About
+            </NavLink>
+          </div>
+          <div>
+            <NavLink
+              to="/contact"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              Contact
+            </NavLink>
+          </div>
+        </div>
+      ) : (
         <div className=" absolute -top-32 duration-1000  right-2  gap-4 text-blue-500">
           <div className="">
             <NavLink
@@ -47,32 +82,7 @@ const Header = () => {
               About
             </NavLink>
           </div>
-        </div>
-      ) : (
-        <div className=" absolute md:hidden top-16 duration-1000  right-4  gap-4 text-blue-500">
-          <div className="">
-            <NavLink
-              to="/"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              Home
-            </NavLink>
-          </div>
           <div>
-            <NavLink
-              to="/meals"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              Meals
-            </NavLink>
-          </div>
-          <div>
-            <NavLink
-              to="/about"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              About
-            </NavLink>
             <NavLink
               to="/contact"
               className={({ isActive }) => (isActive ? "active" : "")}
