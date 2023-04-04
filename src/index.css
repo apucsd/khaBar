@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.my-container {
+  @apply lg:mx-12 my-4;
+}
+.active {
+  color: violet;
+  text-decoration: underline;
+}
+.active:hover {
+  text-decoration: underline;
+}
