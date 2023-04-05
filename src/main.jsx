@@ -8,6 +8,7 @@ import Meals from "./Components/Meals";
 import About from "./Components/About";
 import Contact from "./Components/Contact";
 import MealDetail from "./Components/MealDetail";
+import NotFound from "./Components/NotFound";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -38,6 +39,11 @@ const router = createBrowserRouter([
       {
         path: "contact",
         element: <Contact></Contact>,
+      },
+
+      {
+        path: "*",
+        element: <NotFound></NotFound>,
       },
     ],
   },

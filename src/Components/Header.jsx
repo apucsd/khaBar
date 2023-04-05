@@ -4,6 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isClick, setIsClick] = useState(false);
   return (
     <div className="my-container  flex justify-between">
       <Link to="/">
