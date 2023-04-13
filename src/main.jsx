@@ -9,6 +9,7 @@ import About from "./Components/About";
 import Contact from "./Components/Contact";
 import MealDetail from "./Components/MealDetail";
 import NotFound from "./Components/NotFound";
+import SignIn from "./Components/SignIn";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "contact",
         element: <Contact></Contact>,
+      },
+      {
+        path: "signin",
+        element: <SignIn></SignIn>,
       },
     ],
   },

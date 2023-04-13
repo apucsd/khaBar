@@ -27,7 +27,7 @@ const Contact = () => {
       <div className="">
         <img
           className="md:w-full w-1/2 mx-auto"
-          src="https://i.ibb.co/M1YLj7g/login.png"
+          src="https://img.freepik.com/free-vector/flat-design-illustration-customer-support_23-2148887720.jpg?w=740&t=st=1681390711~exp=1681391311~hmac=1ab1181b4ef40fae0ce1b9e63225648ceeaffededd9ff08cb95de86195985719"
           alt=""
         />
       </div>

@@ -26,8 +26,8 @@ const Header = () => {
       <div
         className={`flex md:flex-row md:bg-transparent md:p-2 duration-500 flex-col gap-4 md:static absolute z-10  ${
           isOpen
-            ? "-right-64 top-16 p-12  bg-slate-100 "
-            : "top-16  p-12 right-2 bg-slate-300"
+            ? "-right-64 hidden md:flex top-16 p-12  bg-slate-50 "
+            : "top-16  p-12 right-2 bg-slate-50"
         }`}
       >
         <NavLink
@@ -57,6 +57,13 @@ const Header = () => {
           className={({ isActive }) => (isActive ? "active" : "")}
         >
           Contact
+        </NavLink>
+        <NavLink
+          onClick={() => setIsOpen(!isOpen)}
+          to="/signin"
+          className={({ isActive }) => (isActive ? "active" : "")}
+        >
+          Sign in
         </NavLink>
       </div>
     </div>
