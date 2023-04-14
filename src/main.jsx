@@ -10,6 +10,7 @@ import Contact from "./Components/Contact";
 import MealDetail from "./Components/MealDetail";
 import NotFound from "./Components/NotFound";
 import SignIn from "./Components/SignIn";
+import Register from "./Components/Register";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "signin",
         element: <SignIn></SignIn>,
+      },
+      {
+        path: "register",
+        element: <Register></Register>,
       },
     ],
   },
