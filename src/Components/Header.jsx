@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { BoltIcon, Bars3Icon, XCircleIcon } from "@heroicons/react/24/solid";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(true);
-  const [isClick, setIsClick] = useState(false);
+
+  const handleLogOut = () => {
+    logOut().then(() => alert("log out successful"));
+  };
   return (
     <div className="my-container  flex justify-between mx-8 md:mx-12">
       <Link to="/">
@@ -65,6 +70,18 @@ const Header = () => {
         >
           Sign in
         </NavLink>
+      </div>
+      <div>
+        {user ? (
+          <span>
+            <small>{user.displayName ? user.displayName : user.email}</small>
+            <button onClick={handleLogOut} className="btn btn-secondary mx-4">
+              Log Out
+            </button>
+          </span>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

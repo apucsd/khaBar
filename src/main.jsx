@@ -11,6 +11,9 @@ import MealDetail from "./Components/MealDetail";
 import NotFound from "./Components/NotFound";
 import SignIn from "./Components/SignIn";
 import Register from "./Components/Register";
+import AuthProvider from "./Provider/AuthProvider";
+import PrivateRoute from "./Components/Routes/PrivateRoute";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -41,7 +44,11 @@ const router = createBrowserRouter([
       },
       {
         path: "contact",
-        element: <Contact></Contact>,
+        element: (
+          <PrivateRoute>
+            <Contact></Contact>
+          </PrivateRoute>
+        ),
       },
       {
         path: "signin",
@@ -57,6 +64,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <AuthProvider>
+      <RouterProvider router={router}></RouterProvider>
+    </AuthProvider>
   </React.StrictMode>
 );

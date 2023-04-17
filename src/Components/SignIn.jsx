@@ -1,22 +1,17 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { EyeIcon } from "@heroicons/react/24/solid";
-import {
-  createUserWithEmailAndPassword,
-  getAuth,
-  sendPasswordResetEmail,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
 
 import { Link } from "react-router-dom";
 import app from "../Firebase/Firebase.config";
-
-const auth = getAuth(app);
+import { AuthContext } from "../Provider/AuthProvider";
 
 const SignIn = () => {
+  const { createUser, signInWithGoogle, signInWithFacebook, signInWithGithub } =
+    useContext(AuthContext);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [showPass, setShowPass] = useState(false);
-  const emailRef = useRef();
+  const { name, signIn } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,27 +19,42 @@ const SignIn = () => {
     const password = e.target.password.value;
     setError("");
     setSuccess("");
-    signInWithEmailAndPassword(auth, email, password)
-      .then((result) => {
-        console.log(result.user);
-        if (!result.user.emailVerified) {
-          return alert("Your email is not verified");
+    signIn(email, password)
+      .then((res) => {
+        if (!res.user.emailVerified) {
+          return alert("Your email is not verified yet");
         }
-        setSuccess("Log in Successful");
+        console.log(res.user);
+        setSuccess("Log in successful");
       })
       .catch((err) => {
-        console.log(err);
-        setError(err.message);
+        console.log(err.message);
+        setError("Password is Wrong");
       });
   };
-  const handleResetPass = () => {
-    const resetEmail = emailRef.current.value;
-    if (!resetEmail) {
-      alert("Please enter your email here");
-    }
-    sendPasswordResetEmail(auth, resetEmail).then(() =>
-      alert("please check your email")
-    );
+
+  ////////////////////sign in with google
+  const handleSignInWithGoogle = () => {
+    signInWithGoogle()
+      .then((res) => {
+        setSuccess("Sign in with google is successful");
+        console.log(res.user);
+      })
+      .catch((er) => setError(er.message));
+  };
+  ///////////////////////sign in with facebook
+  const handleSignInWithFacebook = () => {
+    signInWithFacebook().then((res) => {
+      console.log(res.user);
+      setSuccess("Sign in with facebook is successful");
+    });
+  };
+  //////////////////////Sign In With github
+  const handleSignInWithGithub = () => {
+    signInWithGithub().then((res) => {
+      console.log(res.user);
+      setSuccess("Sign in with github is successful");
+    });
   };
 
   return (
@@ -58,7 +68,6 @@ const SignIn = () => {
         <br />
         <form onSubmit={handleSubmit}>
           <input
-            ref={emailRef}
             className="bg-slate-100 p-3 w-full rounded"
             type="email"
             required
@@ -81,16 +90,42 @@ const SignIn = () => {
           </div>
           <br />
           <p>
-            Forget password ?{" "}
-            <span onClick={handleResetPass} className="btn btn-link">
-              Reset
-            </span>
+            Forget password ? <span className="btn btn-link">Reset</span>
           </p>
           <input
             className="btn btn-success my-4 w-full"
             type="submit"
             value="Submit"
           />
+          <h2 className="text-xl font-semibold text-center">
+            ----------Sign in with----------
+          </h2>
+          <div className="flex gap-3 justify-center my-4">
+            <div
+              onClick={handleSignInWithGoogle}
+              className="flex items-center "
+            >
+              <img
+                className="w-8 h-8 cursor-pointer"
+                src="https://companieslogo.com/img/orig/GOOG-0ed88f7c.png?t=1633218227"
+                alt=""
+              />
+            </div>
+            <div onClick={handleSignInWithFacebook}>
+              <img
+                className="h-10  cursor-pointer w-10"
+                src="https://png.pngtree.com/png-vector/20221018/ourmid/pngtree-facebook-social-media-icon-png-image_6315968.png"
+                alt=""
+              />
+            </div>
+            <div onClick={handleSignInWithGithub}>
+              <img
+                className="h-9 w-16 cursor-pointer"
+                src="https://1000logos.net/wp-content/uploads/2018/11/GitHub-logo.jpg"
+                alt=""
+              />
+            </div>
+          </div>
         </form>
       </div>
       <div className="w-1/2 m-auto my-4 p-8 text-center">
